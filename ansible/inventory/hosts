@@ -1,0 +1,13 @@
+[linux]
+srv-secu-geneve ansible_host=10.10.0.105
+srv-devops ansible_host=10.10.0.106
+[linux_paris]
+srv-secu-paris ansible_host=10.20.0.107
+
+[windows]
+srv-ad ansible_host=10.10.40.10
+srv-services ansible_host=10.10.0.103
+
+[all:vars]
+ansible_user=ansible
+ansible_ssh_private_key_file=~/.ssh/id_rsa

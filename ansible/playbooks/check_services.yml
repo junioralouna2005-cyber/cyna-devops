@@ -1,0 +1,31 @@
+---
+- name: Vérification état des services
+  hosts: linux
+  become: yes
+  tasks:
+    - name: Vérifier service SSH
+      service:
+        name: ssh
+        state: started
+
+    - name: Collecter les infos système
+      setup:
+        gather_subset:
+          - network
+          - hardware
+
+    - name: Afficher uptime
+      command: uptime
+      register: uptime_result
+
+    - name: Afficher résultat uptime
+      debug:
+        msg: "{{ inventory_hostname }} - {{ uptime_result.stdout }}"
+
+    - name: Vérifier espace disque
+      command: df -h
+      register: disk_result
+
+    - name: Afficher espace disque
+      debug:
+        msg: "{{ disk_result.stdout }}"

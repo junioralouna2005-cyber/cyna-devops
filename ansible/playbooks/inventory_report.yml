@@ -1,0 +1,35 @@
+---
+- name: Rapport d'inventaire des VMs
+  hosts: linux
+  become: yes
+  tasks:
+    - name: Collecter les infos système
+      setup:
+
+    - name: Afficher hostname
+      debug:
+        msg: "Hostname: {{ ansible_hostname }}"
+
+    - name: Afficher OS
+      debug:
+        msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Afficher IP
+      debug:
+        msg: "IP: {{ ansible_default_ipv4.address }}"
+
+    - name: Afficher RAM totale
+      debug:
+        msg: "RAM: {{ ansible_memtotal_mb }} MB"
+
+    - name: Afficher CPU
+      debug:
+        msg: "CPU: {{ ansible_processor_vcpus }} vCPUs"
+
+    - name: Vérifier espace disque
+      command: df -h /
+      register: disk_result
+
+    - name: Afficher espace disque
+      debug:
+        msg: "{{ disk_result.stdout }}"

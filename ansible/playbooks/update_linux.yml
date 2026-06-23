@@ -1,0 +1,23 @@
+---
+- name: Mise à jour automatique serveurs Linux
+  hosts: linux
+  become: yes
+  tasks:
+    - name: Mettre à jour les paquets
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Supprimer les paquets inutiles
+      apt:
+        autoremove: yes
+
+    - name: Vérifier si redémarrage nécessaire
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_required
+
+    - name: Afficher si redémarrage nécessaire
+      debug:
+        msg: "Redémarrage nécessaire sur {{ inventory_hostname }}"
+      when: reboot_required.stat.exists
