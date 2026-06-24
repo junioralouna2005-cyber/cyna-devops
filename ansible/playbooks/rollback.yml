@@ -1,0 +1,30 @@
+---
+- name: Rollback en cas d'erreur
+  hosts: linux
+  become: yes
+  vars:
+    service_name: "ssh"
+  tasks:
+    - name: Vérifier l'état du service
+      service_facts:
+
+    - name: Redémarrer le service si arrêté
+      service:
+        name: "{{ service_name }}"
+        state: restarted
+      when: ansible_facts.services[service_name + '.service'] is defined
+
+    - name: Vérifier la connectivité réseau
+      command: ping -c 1 10.10.0.1
+      register: ping_result
+      ignore_errors: yes
+
+    - name: Afficher statut réseau
+      debug:
+        msg: "Réseau OK sur {{ inventory_hostname }}"
+      when: ping_result.rc == 0
+
+    - name: Afficher alerte si réseau KO
+      debug:
+        msg: "ALERTE - Réseau KO sur {{ inventory_hostname }}"
+      when: ping_result.rc != 0
