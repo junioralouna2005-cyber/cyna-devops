@@ -1,6 +1,5 @@
 # main.tf — Infrastructure Azure CYNA
 # Rédacteur : Junior Alouna — DevOps
-
 terraform {
   required_providers {
     azurerm = {
@@ -9,16 +8,13 @@ terraform {
     }
   }
 }
-
 provider "azurerm" {
   features {}
 }
-
 resource "azurerm_resource_group" "cyna" {
   name     = "rg-cyna-it"
-  location = "Germany West Central"
+  location = "Poland Central"
 }
-
 resource "azurerm_virtual_network" "cyna" {
   name                = "vnet-cyna"
   address_space       = ["10.30.0.0/16"]

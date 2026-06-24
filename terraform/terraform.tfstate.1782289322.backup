@@ -1,0 +1,72 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.6",
+  "serial": 3,
+  "lineage": "36191c89-0a30-e2f8-8297-241de2421273",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "cyna",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/93d6f9eb-3177-4571-bea4-d3bd283de5cb/resourceGroups/rg-cyna-it",
+            "location": "polandcentral",
+            "managed_by": "",
+            "name": "rg-cyna-it",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "cyna",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.30.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "fadfee31-9b96-4ddc-a1ab-35d62e4ee942",
+            "id": "/subscriptions/93d6f9eb-3177-4571-bea4-d3bd283de5cb/resourceGroups/rg-cyna-it/providers/Microsoft.Network/virtualNetworks/vnet-cyna",
+            "location": "germanywestcentral",
+            "name": "vnet-cyna",
+            "resource_group_name": "rg-cyna-it",
+            "subnet": [
+              {
+                "address_prefix": "",
+                "id": "/subscriptions/93d6f9eb-3177-4571-bea4-d3bd283de5cb/resourceGroups/rg-cyna-it/providers/Microsoft.Network/virtualNetworks/vnet-cyna/subnets/default",
+                "name": "default",
+                "security_group": ""
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
