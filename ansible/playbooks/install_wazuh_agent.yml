@@ -1,6 +1,6 @@
 ---
 - name: Installation agent Wazuh sur serveurs Linux
-  hosts: linux
+  hosts: linux,linux_paris
   become: yes
   vars:
     wazuh_manager_ip: "10.10.0.105"

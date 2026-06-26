@@ -1,6 +1,6 @@
 ---
 - name: Vérification état des services
-  hosts: linux
+  hosts: linux,linux_paris
   become: yes
   tasks:
     - name: Vérifier service SSH

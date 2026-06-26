@@ -1,6 +1,6 @@
 ---
 - name: Rapport d'inventaire des VMs
-  hosts: linux
+  hosts: linux,linux_paris
   become: yes
   tasks:
     - name: Collecter les infos système

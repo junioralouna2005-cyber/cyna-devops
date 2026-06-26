@@ -1,6 +1,6 @@
 ---
 - name: Rollback en cas d'erreur
-  hosts: linux
+  hosts: linux,linux_paris
   become: yes
   vars:
     service_name: "ssh"
