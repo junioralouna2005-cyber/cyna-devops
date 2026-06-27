@@ -1,0 +1,50 @@
+---
+- name: Reponse automatique a un incident de securite
+  hosts: linux,linux_paris
+  become: yes
+  tasks:
+
+    - name: Collecter les infos systeme
+      setup:
+
+    - name: Verifier etat du service SSH
+      service:
+        name: ssh
+        state: started
+
+    - name: Afficher les connexions actives
+      command: ss -tnp
+      register: connexions
+
+    - name: Afficher connexions
+      debug:
+        msg: "{{ inventory_hostname }} - Connexions : {{ connexions.stdout_lines }}"
+
+    - name: Verifier tentatives SSH echouees
+      command: grep "Failed password" /var/log/auth.log
+      register: failed_ssh
+      ignore_errors: yes
+
+    - name: Afficher tentatives echouees
+      debug:
+        msg: "ALERTE sur {{ inventory_hostname }} - {{ failed_ssh.stdout_lines }}"
+      when: failed_ssh.rc == 0
+
+    - name: Verifier espace disque
+      command: df -h /
+      register: disk
+
+    - name: Afficher espace disque
+      debug:
+        msg: "{{ inventory_hostname }} - Disque : {{ disk.stdout_lines }}"
+
+    - name: Generer rapport horodate
+      shell: "echo '[INCIDENT] {{ inventory_hostname }} - {{ ansible_default_ipv4.address }} - OK' >> /tmp/incident_report.txt"
+
+    - name: Afficher rapport
+      command: cat /tmp/incident_report.txt
+      register: rapport
+
+    - name: Afficher contenu rapport
+      debug:
+        msg: "{{ rapport.stdout_lines }}"
